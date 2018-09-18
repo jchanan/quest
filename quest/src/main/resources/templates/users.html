@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		#customers {
+		    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+		
+		#customers td, #customers th {
+		    border: 1px solid #ddd;
+		    padding: 8px;
+		}
+		
+		#customers tr:nth-child(even){background-color: #f2f2f2;}
+		
+		#customers tr:hover {background-color: #ddd;}
+		
+		#customers th {
+		    padding-top: 12px;
+		    padding-bottom: 12px;
+		    text-align: left;
+		    background-color: #4CAF50;
+		    color: white;
+		}
+	</style>
+	
+	<script src="http://momentjs.com/downloads/moment.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+	    $(document).ready(function(){
+			
+	    	$("#birthDate").each( function() {
+		    	  
+				  var format = "Do MMM YYYY";
+				
+				  var $this = $( this );
+				  var old_date = $.trim($this.text());
+				  var new_date = moment(old_date , 'YYYY-MM-DD').format( format );
+				
+				  $this.text($this.text().replace(old_date, new_date));
+			});
+	    });
+    </script>
+</head>
+<body>
+    <table id="customers">
+    <thead>
+        <tr>
+            <th> Id </th>
+            <th> Name </th>
+            <th> PPS </th>
+            <th> Birth </th>
+            <th> Mobile </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${users.empty}">
+            <td colspan="2"> No records ha been created </td>
+        </tr>
+        
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.id}"> Id </span></td>
+            <td><span th:text="${user.name}"> Name </span></td>
+            <td><span th:text="${user.ppsNumber}"> PPS </span></td>
+            <td><span id="birthDate" th:text="${user.birthDay}"> Birth </span></td>
+            <td><span th:text="${user.mobilePhone}"> Mobile </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

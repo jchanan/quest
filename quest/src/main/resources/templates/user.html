@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		input[type=text], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+		
+		input[type=submit] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
+		
+		div {
+		    border-radius: 5px;
+		    background-color: #f2f2f2;
+		    padding: 20px;
+		}
+		
+		input[type=reset] {
+		    width: 100%;
+		    background-color: #FF4500;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=reset]:hover {
+		    background-color: #FF8C00;
+		}
+		
+		div {
+		    border-radius: 5px;
+		    background-color: #f2f2f2;
+		    padding: 20px;
+		}
+	</style>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script>
+		$(document).ready(function(){
+			
+			$(function() {
+				$("#datebirth").datepicker({dateFormat: 'dd/mm/yy', minDate:(new Date(1900,1-1,1)), maxDate:('-16Y')});
+			} ),
+			
+		    $("#nameof").change(function(){
+		    	console.log($(this).val());
+		    	var value = $(this).val();
+		        
+		    	if (value.length > 25) {
+		    		console.log($(this).val());
+		            alert("Name is max 25 characteres");
+		            
+		            $(this).val($(this).val().substring(0, 25));
+		        }
+		    }),
+		    
+		    $("#phone").blur(function(){
+		    	phone = $(this).val();
+		        phone = phone.replace(/[^0-9]/g,'');
+		        console.log(phone);
+		        if (phone.substring(0,2) != '08')
+		        {
+		            alert('Phone number must begin with 08.');
+		            $('#phone').val('');
+		            $('#phone').focus();
+		        } else {
+		        	$(this).val(phone);
+		        }
+		    });
+		});
+	</script>
+</head>
+<body>
+
+    <h1>Form</h1>
+    <form name="usersform" action="#" th:action="@{/user}" th:object="${user}" method="post">
+        <p> <input hidden="true" th:field="*{id}" /> </p>
+    	<p>PPS: <input type="text" th:field="*{ppsNumber}" /></p>
+        <p>Name: <input id="nameof" type="text" th:field="*{name}" /></p>
+        <p>Date of Birth: <input id="datebirth" type="text" th:field="*{birthDay}" /></p>
+        <p>Telephone: <input id="phone" type="text" th:field="*{mobilePhone}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

@@ -21,10 +21,10 @@ public class UserDaoServiceCommandLineRunner implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User("43434aaa", "Jeferson", Calendar.getInstance().getTime(), "0833650789");
+		/*User user = new User("43434aaa", "Jeferson", Calendar.getInstance().getTime(), "0833650789");
 		//userDaoService.insert(user);
 		long insert = user.getId();
-		log.info("New user is created " + user);
+		log.info("New user is created " + user);*/
 	}
 
 }

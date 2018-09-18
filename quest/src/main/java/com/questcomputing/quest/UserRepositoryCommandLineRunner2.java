@@ -23,7 +23,7 @@ public class UserRepositoryCommandLineRunner2 implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User("43434bbb", "Roberto", Calendar.getInstance().getTime(), "0833650789");
+		/*User user = new User("43434bbb", "Roberto", Calendar.getInstance().getTime(), "0833650789");
 		//userRepository.save(user);
 		
 		Optional<User> userOne = userRepository.findById(1L);
@@ -32,7 +32,7 @@ public class UserRepositoryCommandLineRunner2 implements CommandLineRunner {
 		
 		List<User> users = userRepository.findAll();
 		
-		log.info("All users " + users);
+		log.info("All users " + users);*/
 	}
 
 }

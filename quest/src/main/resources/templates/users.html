@@ -28,6 +28,9 @@
 		}
 	</style>
 	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
 	<script src="http://momentjs.com/downloads/moment.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -47,29 +50,56 @@
     </script>
 </head>
 <body>
+	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Quest project</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li th:classappend="${module == 'home' ? 'active' : ''}">
+              <a href="user" th:href="@{/user}">Create</a>
+            </li>
+            <li th:classappend="${module == 'users' ? 'active' : ''}">
+              <a href="users" th:href="@{/users}">List</a>
+            </li>
+          </ul>       
+        </div>
+      </div>
+      </div>
+    <br>
+    <br>
+    <br>
+    <div>
     <table id="customers">
-    <thead>
-        <tr>
-            <th> Id </th>
-            <th> Name </th>
-            <th> PPS </th>
-            <th> Birth </th>
-            <th> Mobile </th>
-        </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${users.empty}">
-            <td colspan="2"> No records ha been created </td>
-        </tr>
-        
-        <tr th:each="user : ${users}">
-            <td><span th:text="${user.id}"> Id </span></td>
-            <td><span th:text="${user.name}"> Name </span></td>
-            <td><span th:text="${user.ppsNumber}"> PPS </span></td>
-            <td><span id="birthDate" th:text="${user.birthDay}"> Birth </span></td>
-            <td><span th:text="${user.mobilePhone}"> Mobile </span></td>
-        </tr>
-    </tbody>
-</table>
+	    <thead>
+	        <tr>
+	            <th> Id </th>
+	            <th> Name </th>
+	            <th> PPS </th>
+	            <th> Birth </th>
+	            <th> Mobile </th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <tr th:if="${users.empty}">
+	            <td colspan="2"> No records ha been created </td>
+	        </tr>
+	        
+	        <tr th:each="user : ${users}">
+	            <td><span th:text="${user.id}"> Id </span></td>
+	            <td><span th:text="${user.name}"> Name </span></td>
+	            <td><span th:text="${user.ppsNumber}"> PPS </span></td>
+	            <td><span id="birthDate" th:text="${user.birthDay}"> Birth </span></td>
+	            <td><span th:text="${user.mobilePhone}"> Mobile </span></td>
+	        </tr>
+	    </tbody>
+	</table>
+</div>
 </body>
 </html>

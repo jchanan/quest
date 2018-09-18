@@ -29,11 +29,11 @@
 		    background-color: #45a049;
 		}
 		
-		div {
+		/* div {
 		    border-radius: 5px;
 		    background-color: #f2f2f2;
 		    padding: 20px;
-		}
+		} */
 		
 		input[type=reset] {
 		    width: 100%;
@@ -50,12 +50,15 @@
 		    background-color: #FF8C00;
 		}
 		
-		div {
+		/* div {
 		    border-radius: 5px;
 		    background-color: #f2f2f2;
 		    padding: 20px;
-		}
+		} */
 	</style>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -96,7 +99,32 @@
 	</script>
 </head>
 <body>
-
+	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Quest project</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li th:classappend="${module == 'home' ? 'active' : ''}">
+              <a href="user" th:href="@{/user}">Create</a>
+            </li>
+            <li th:classappend="${module == 'users' ? 'active' : ''}">
+              <a href="users" th:href="@{/users}">List</a>
+            </li>
+          </ul>       
+        </div>
+      </div>
+      </div>
+    <p>
+    <br>
+    <br>
+    <div>
     <h1>Form</h1>
     <form name="usersform" action="#" th:action="@{/user}" th:object="${user}" method="post">
         <p> <input hidden="true" th:field="*{id}" /> </p>
@@ -106,5 +134,6 @@
         <p>Telephone: <input id="phone" type="text" th:field="*{mobilePhone}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
+    </div>
 </body>
 </html>

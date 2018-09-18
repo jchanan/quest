@@ -20,12 +20,6 @@ public class UserResource {
 	@Autowired
 	private UserRepository userRepository;
 
-	@RequestMapping(method=RequestMethod.GET, path="greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
-    }
-	
 	/*//GET
 	//retrieveAllUsers
 	@RequestMapping(method=RequestMethod.GET, path="users")
